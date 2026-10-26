@@ -1,0 +1,97 @@
+{
+  "files.associations": {
+    "*.asset": "yaml",
+    "*.unity": "yaml",
+    "*.prefab": "yaml",
+    "*.meta": "yaml"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.slnx": "*.csproj",
+    "*.sln": "*.csproj"
+  },
+  "dotnet.defaultSolution": "ShadowKnight.slnx",
+  "dotnet.backgroundAnalysis.compilerDiagnosticsScope": "fullSolution",
+  "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "fullSolution",
+  "dotnetAcquisitionExtension.sharedExistingDotnetPath": "C:\\Program Files\\dotnet\\dotnet.exe",
+  "dotnet.server.environmentVariables": {
+    "DOTNET_ROOT": "C:\\Program Files\\dotnet",
+    "PATH": "C:\\Program Files\\dotnet;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\Cloudflare\\Cloudflare WARP\\;C:\\Program Files\\dotnet\\;C:\\Users\\win 11\\AppData\\Local\\Microsoft\\WindowsApps;"
+  },
+  "terminal.integrated.env.windows": {
+    "DOTNET_ROOT": "C:\\Program Files\\dotnet",
+    "PATH": "C:\\Program Files\\Git\\cmd;C:\\Program Files\\dotnet;${env:PATH}"
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.vs": true,
+    "**/.gitmodules": true,
+    "**/.vsconfig": true,
+    "**/*.booproj": true,
+    "**/*.pidb": true,
+    "**/*.suo": true,
+    "**/*.user": true,
+    "**/*.userprefs": true,
+    "**/*.unityproj": true,
+    "**/*.dll": true,
+    "**/*.exe": true,
+    "**/*.pdf": true,
+    "**/*.mid": true,
+    "**/*.midi": true,
+    "**/*.wav": true,
+    "**/*.gif": true,
+    "**/*.ico": true,
+    "**/*.jpg": true,
+    "**/*.jpeg": true,
+    "**/*.png": true,
+    "**/*.psd": true,
+    "**/*.tga": true,
+    "**/*.tif": true,
+    "**/*.tiff": true,
+    "**/*.3ds": true,
+    "**/*.fbx": true,
+    "**/*.lxo": true,
+    "**/*.ma": true,
+    "**/*.obj": true,
+    "**/*.asset": true,
+    "**/*.cubemap": true,
+    "**/*.flare": true,
+    "**/*.mat": true,
+    "**/*.meta": true,
+    "**/*.prefab": true,
+    "**/*.unity": true,
+    "Build/": true,
+    "library/": true,
+    "Obj/": true,
+    "logs/": true,
+    "ProjectSettings/": true,
+    "UserSettings/": true,
+    "Temp/": true,
+    "Library/": true,
+    "Logs/": true,
+    "obj/": true
+  },
+  "workbench.colorTheme": "Dark 2026",
+  "editor.semanticHighlighting.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "method:csharp": "#DCDCAA",
+      "enum:csharp": "#B8D7A3",
+      "property:csharp": "#9CDCFE",
+      "interface:csharp": "#B8D7A3",
+      "struct:csharp": "#86C691",
+      "parameter:csharp": "#9CDCFE",
+      "class:csharp": "#4EC9B0"
+    }
+  },
+  "files.watcherExclude": {
+    "**/Library/**": true,
+    "**/Temp/**": true,
+    "**/Logs/**": true
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "git.path": "C:\\Program Files\\Git\\cmd\\git.exe"
+}
