@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 public class UpgradePanelUI : MonoBehaviour
 {
+    private PlayerController playerController;
     private PlayerUpgrade playerUpgrade;
     private PlayerInventory playerInventory;
+    private EnemyRespawn enemyRespawn;
+
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private Image[] damageSlots;
     [SerializeField] private TextMeshProUGUI damageCostTexts;
@@ -21,8 +24,10 @@ public class UpgradePanelUI : MonoBehaviour
 
     private void Awake()
     {
+        playerController = FindAnyObjectByType<PlayerController>();
         playerUpgrade = FindAnyObjectByType<PlayerUpgrade>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
+        enemyRespawn = FindAnyObjectByType<EnemyRespawn>();
 
         for (int i = 0; i < damageSlots.Length; i++)
         {
@@ -106,5 +111,14 @@ public class UpgradePanelUI : MonoBehaviour
                 staminaSlots[i].color = lockColor;
             }
         }
+    }
+    public void Rest()
+    {
+        playerController.Health.Heal(playerController.Health.MaxHealth);
+        playerController.Combat.RestoreStamina(playerController.Combat.MaxStamina);
+        playerController.Inventory.RestoreHealthPotions(playerController.Inventory.MaxHealthPotions);
+        playerController.Combat.ResetSkillAfterRest();
+
+        enemyRespawn.RespawnEnemies();
     }
 }

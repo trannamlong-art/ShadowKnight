@@ -6,12 +6,19 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float facingDirection => Mathf.Sign(transform.localScale.x);
     [SerializeField] private float knockbackForce;
+    private Vector3 initialPosition;
+    private Vector3 initialScale;
+
+    public Vector3 InitialPosition => initialPosition;
+    public Vector3 InitialScale => initialScale;
 
     public float FacingDirection => facingDirection;
     public float KnockbackForce => knockbackForce;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position;
+        initialScale = transform.localScale;
     }
 
     public void EnemyMove(Vector2 direction)

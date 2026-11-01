@@ -5,7 +5,8 @@ public enum EnemyType
     Skeleton,
     Goblin,
     Mushroom,
-    Flyingeye
+    Flyingeye,
+    Undead
 }
 
 
@@ -30,5 +31,10 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Has Dash Ability Type")]
     public float DashForce;
+
+    [Header("Undead Summon skill")]
+    public int maxSummonCount;
+    public float summonCooldown;
+
 
 }

@@ -73,6 +73,11 @@ public class PlayerAnimation : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         return stateInfo.IsName("Hurt") && stateInfo.normalizedTime >= 1;
     }
+    public bool IsDieFinished()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1;
+    }
     public void TriggerHealPotion()
     {
         playerController.Health.Heal(50f);

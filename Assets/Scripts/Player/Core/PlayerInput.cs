@@ -10,6 +10,7 @@ public class Playerinput : MonoBehaviour
     public bool rollingInput { get; private set; }
     public bool healingInput { get; private set; }
     public bool skillInput { get; private set; }
+    public bool interactInput { get; private set; }
 
     private InputAction activeMoveAction;
     private InputAction activeJumpAction;
@@ -18,6 +19,7 @@ public class Playerinput : MonoBehaviour
     private InputAction activeRollingAction;
     private InputAction activeHealingAction;
     private InputAction activeSkillAction;
+    private InputAction activeInteractAction;
 
     private bool isActive;
     private void OnEnable()
@@ -28,7 +30,8 @@ public class Playerinput : MonoBehaviour
         activeHeavyAttackAction = InputSystem.actions?.FindAction("Player/HeavyAttack");
         activeRollingAction = InputSystem.actions?.FindAction("Player/Sprint");
         activeHealingAction = InputSystem.actions?.FindAction("Player/Heal");
-        activeSkillAction = InputSystem.actions?.FindAction("Player/Interact");
+        activeSkillAction = InputSystem.actions?.FindAction("Player/Art");
+        activeInteractAction = InputSystem.actions?.FindAction("Player/Interact");
 
         activeMoveAction.Enable();
         activeJumpAction.Enable();
@@ -37,6 +40,7 @@ public class Playerinput : MonoBehaviour
         activeRollingAction.Enable();
         activeHealingAction.Enable();
         activeSkillAction.Enable();
+        activeInteractAction.Enable();
     }
     public void InputActive()
     {
@@ -68,6 +72,10 @@ public class Playerinput : MonoBehaviour
 
         skillInput = activeSkillAction != null && isActiveAndEnabled
             ? activeSkillAction.triggered
+            : false;
+
+        interactInput = activeInteractAction != null && isActiveAndEnabled
+            ? activeInteractAction.triggered
             : false;
     }
 

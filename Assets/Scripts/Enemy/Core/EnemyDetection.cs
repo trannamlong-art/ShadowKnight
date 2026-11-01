@@ -11,6 +11,9 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] private float detectionRadius;
     [SerializeField] private float attackZoneRadius;
     [SerializeField] private float detectionAngle;
+    [SerializeField] private Transform detectionPoint;
+
+    private Vector3 DetectionPoint => detectionPoint != null ? detectionPoint.position : transform.position;
 
     private Vector2 toPlayer;
     public Vector2 ToPlayer => toPlayer;
@@ -27,10 +30,10 @@ public class EnemyDetection : MonoBehaviour
         isPlayerDeath = FindAnyObjectByType<PlayerController>().currentState is PlayerStateDie;
         if (isPlayerDeath) return false;
 
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapCircle(DetectionPoint, detectionRadius, playerLayer);
         if (playerCollider != null)
         {
-            toPlayer = (playerCollider.transform.position - transform.position).normalized;
+            toPlayer = (playerCollider.transform.position - DetectionPoint).normalized;
             Vector2 facingVector = facingDirection * transform.right;
             float angleToPlayer = Vector2.Angle(facingVector, toPlayer);
             return angleToPlayer <= detectionAngle / 2f;
@@ -43,10 +46,10 @@ public class EnemyDetection : MonoBehaviour
         isPlayerDeath = FindAnyObjectByType<PlayerController>().currentState is PlayerStateDie;
         if (isPlayerDeath) return false;
 
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapCircle(DetectionPoint, detectionRadius, playerLayer);
         if (playerCollider != null)
         {
-            toPlayer = (playerCollider.transform.position - transform.position).normalized;
+            toPlayer = (playerCollider.transform.position - DetectionPoint).normalized;
             return true;
         }
         return false;
@@ -57,10 +60,10 @@ public class EnemyDetection : MonoBehaviour
         isPlayerDeath = FindAnyObjectByType<PlayerController>().currentState is PlayerStateDie;
         if (isPlayerDeath) return false;
 
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, attackZoneRadius, playerLayer);
+        Collider2D playerCollider = Physics2D.OverlapCircle(DetectionPoint, attackZoneRadius, playerLayer);
         if (playerCollider != null)
         {
-            toPlayer = (playerCollider.transform.position - transform.position).normalized;
+            toPlayer = (playerCollider.transform.position - DetectionPoint).normalized;
             return true;
         }
         return false;
@@ -90,16 +93,16 @@ public class EnemyDetection : MonoBehaviour
         }
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireSphere(DetectionPoint, detectionRadius);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackZoneRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(DetectionPoint, attackZoneRadius);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position
+        Gizmos.DrawLine(DetectionPoint, DetectionPoint
                         + (Vector3)(Quaternion.Euler(0, 0, detectionAngle / 2f)
                         * (enemyMovement.FacingDirection * transform.right) * detectionRadius));
-        Gizmos.DrawLine(transform.position, transform.position
+        Gizmos.DrawLine(DetectionPoint, DetectionPoint
                         + (Vector3)(Quaternion.Euler(0, 0, -detectionAngle / 2f)
                         * (enemyMovement.FacingDirection * transform.right) * detectionRadius));
     }

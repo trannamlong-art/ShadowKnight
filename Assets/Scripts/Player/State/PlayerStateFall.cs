@@ -16,12 +16,8 @@ public class PlayerStateFall : PlayerState
     {
         player.Animation.SetAnimationFallState(player.Movement.linearVelocityY);
         player.Movement.PlayerFlip(player.Input.moveInput.x);
-        bool grounded = player.Movement.IsGrounded;
-        if (!grounded)
-        {
-            hasLeftGround = true;
-        }
-        if (hasLeftGround && grounded)
+
+        if (player.Movement.IsGrounded)
         {
             player.ChangeState(new PlayerStateLand(player));
             return;

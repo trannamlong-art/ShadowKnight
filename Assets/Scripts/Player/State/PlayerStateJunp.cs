@@ -24,12 +24,12 @@ public class PlayerStateJump : PlayerState
         }
         // 
 
-        if (player.Movement.linearVelocityY < 0)
+        if (player.Movement.linearVelocityY < -0.01f)
         {
             player.ChangeState(new PlayerStateFall(player));
             return;
         }
-        if (hasLeftGround && grounded)
+        if (hasLeftGround && grounded && player.Movement.linearVelocityY == 0)
         {
             player.ChangeState(new PlayerStateIdle(player));
             return;

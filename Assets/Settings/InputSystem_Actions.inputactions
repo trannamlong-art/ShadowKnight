@@ -37,12 +37,12 @@
                     "priority": 0
                 },
                 {
-                    "name": "Interact",
+                    "name": "Art",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -110,6 +110,16 @@
                     "name": "HeavyAttack",
                     "type": "Button",
                     "id": "6ab96de0-7fee-4942-83ae-981e6e61d20e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "ed23c445-3452-4e0f-b627-c5dc18215424",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -466,7 +476,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Interact",
+                    "action": "Art",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -477,7 +487,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Interact",
+                    "action": "Art",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -544,6 +554,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a48c5722-e98b-45df-9bd8-2c4656ddc023",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2c4815d-b42e-47a8-a672-4841f903bc63",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

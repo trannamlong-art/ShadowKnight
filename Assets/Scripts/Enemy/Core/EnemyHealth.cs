@@ -40,5 +40,14 @@ public class EnemyHealth : MonoBehaviour
             enemy.Movement.EnemyKnockback(enemy.Movement.KnockbackForce * enemy.Detection.ToPlayer);
             enemy.ChangeState(new EnemyStateHurt(enemy));
         }
+
+        if (enemy.Data.enemyType == EnemyType.Undead && CurrentHealth <= enemyData.maxHealth * 0.5f)
+        {
+            enemy.Summon.CanSummon();
+        }
+    }
+    public void RestoreFullHealth()
+    {
+        currentHealth = enemyData.maxHealth;
     }
 }

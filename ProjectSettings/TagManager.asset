@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - DeadEnemy
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -44,8 +46,29 @@ TagManager:
   - name: BackgroundDetail
     uniqueID: 2597016007
     locked: 0
+  - name: BackgroundDetail2
+    uniqueID: 4059965417
+    locked: 0
+  - name: Background
+    uniqueID: 2187706193
+    locked: 0
+  - name: Ground
+    uniqueID: 998502951
+    locked: 0
+  - name: Wall
+    uniqueID: 4192965607
+    locked: 0
+  - name: GroundDetail
+    uniqueID: 2895779869
+    locked: 0
+  - name: DetailPrefabs
+    uniqueID: 2665562643
+    locked: 0
   - name: Player
     uniqueID: 1186830869
+    locked: 0
+  - name: FrontDetail
+    uniqueID: 3622350211
     locked: 0
   m_RenderingLayers:
   - Default

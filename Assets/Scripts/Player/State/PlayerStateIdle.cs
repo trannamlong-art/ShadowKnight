@@ -40,7 +40,7 @@ public class PlayerStateIdle : PlayerState
             player.ChangeState(new PlayerStateRoll(player));
             return;
         }
-        if (player.Input.healingInput && player.Inventory.TryUseHealPotion() && player.Health.CurrentHealth < player.Health.MaxHealth)
+        if (player.Input.healingInput && player.Health.CurrentHealth < player.Health.MaxHealth && player.Inventory.TryUseHealPotion())
         {
             player.ChangeState(new PlayerStateHeal(player));
             return;

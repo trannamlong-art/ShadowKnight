@@ -17,6 +17,11 @@ public class EnemyStateRun : EnemyState
         // Code to execute during the run state update
         enemy.Movement.EnemyFlip(enemy.Detection.ToPlayer.x);
 
+        if (enemy.Data.enemyType == EnemyType.Undead && enemy.Summon.SummonCooldown())
+        {
+            enemy.ChangeState(new EnemyStateSummon(enemy));
+            return;
+        }
         if (!enemy.Detection.PlayerInDetectionZone())
         {
             enemy.ChangeState(new EnemyStateIdle(enemy));

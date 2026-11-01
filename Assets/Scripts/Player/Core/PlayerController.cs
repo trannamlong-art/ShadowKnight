@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerCombat Combat { get; private set; }
     public PlayerInventory Inventory { get; private set; }
     public PlayerHealth Health { get; private set; }
+    public PlayerRespawn Respawn { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         Combat = GetComponent<PlayerCombat>();
         Inventory = GetComponent<PlayerInventory>();
         Health = GetComponent<PlayerHealth>();
+        Respawn = GetComponent<PlayerRespawn>();
     }
     private void Start()
     {

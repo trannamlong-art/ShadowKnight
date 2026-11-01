@@ -16,8 +16,10 @@ public class PlayerStateDie : PlayerState
     public override void UpdateState()
     {
         // Code to execute during the die state update
-
-
+        if (player.Animation.IsDieFinished())
+        {
+            player.Respawn.OpenRepawnPanelWhenPlayerDie();
+        }
     }
     public override void ExitState()
     {

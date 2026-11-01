@@ -16,6 +16,8 @@ MonoBehaviour:
   attackAnimations:
   - Attack1
   - Attack2
+  minGold: 30
+  maxGold: 40
   moveSpeed: 5
   maxHealth: 100
   attackDamage: 20
@@ -23,3 +25,6 @@ MonoBehaviour:
   shieldTime: 0
   shieldCooldown: 0
   shieldDamageReduction: 0
+  DashForce: 0
+  maxSummonCount: 0
+  summonCooldown: 0

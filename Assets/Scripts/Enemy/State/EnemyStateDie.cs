@@ -12,7 +12,12 @@ public class EnemyStateDie : EnemyState
         // Code to execute when entering the die state
         enemy.Movement.EnemyStopMove();
         enemy.Animation.PlayAnimation("Die");
-        enemy.gameObject.layer = LayerMask.NameToLayer("DeadEnemy");
+        enemy.gameObject.tag = "DeadEnemy";
+
+        if (enemy.Summon != null)
+        {
+            enemy.Summon.DisableSummon();
+        }
     }
     public override void Update()
     {

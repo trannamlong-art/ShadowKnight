@@ -18,16 +18,18 @@ public class EnemyStateAttack : EnemyState
 
     public override void Update()
     {
-        if (!enemy.Animation.IsAnimationFinished(attackName))
+        enemy.Combat.NextAttack();
+        enemy.Combat.StartAttackCooldown();
+
+        if (enemy.Animation.IsAnimationFinished(attackName) && enemy.Detection.PlayerInDetectionZone())
         {
+            enemy.ChangeState(new EnemyStateRun(enemy));
             return;
         }
-
-        enemy.Combat.NextAttack();
-
-        // Hết toàn bộ đòn: bắt đầu hồi rồi về Idle.
-        enemy.Combat.StartAttackCooldown();
-        enemy.ChangeState(new EnemyStateIdle(enemy));
+        if (enemy.Animation.IsAnimationFinished(attackName) && !enemy.Detection.PlayerInDetectionZone())
+        {
+            enemy.ChangeState(new EnemyStateIdle(enemy));
+        }
     }
     public override void FixedUpdate()
     {

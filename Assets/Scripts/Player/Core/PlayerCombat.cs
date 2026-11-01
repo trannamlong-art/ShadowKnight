@@ -18,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("Skill Settings")]
     [SerializeField] private float skillDamage;
     [SerializeField] private float skillCooldown;
+    private float nextSkillTime;
 
     [Header("Stamina Settings")]
     [SerializeField] private float maxStamina;
@@ -36,6 +37,7 @@ public class PlayerCombat : MonoBehaviour
     public float AttackStaminaCost => attackStaminaCost;
     public float HeavyAttackStaminaCost => heavyAttackStaminaCost;
     public float RollStaminaCost => rollStaminaCost;
+    public float SkillCooldownRemaining => Mathf.Max(0, nextSkillTime - Time.time);
 
     private void Awake()
     {
@@ -81,39 +83,71 @@ public class PlayerCombat : MonoBehaviour
     }
     public void PlayerAttack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy"));
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (!enemyHealth) return;
-            enemyHealth.TakeDamage(attackDamage);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy", "SummonType"));
 
-            SpawnAttackEffect(enemy);
+        foreach (Collider2D target in hitEnemies)
+        {
+            EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+            {
+                enemyHealth.TakeDamage(attackDamage);
+                SpawnAttackEffect(target);
+                continue;
+            }
+
+            SummonMonster summonMonster = target.GetComponent<SummonMonster>();
+            if (summonMonster)
+            {
+                summonMonster.TakeHit();
+                SpawnAttackEffect(target);
+                continue;
+            }
         }
     }
     public void PlayerHeavyAttack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy"));
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (!enemyHealth) return;
-            enemyHealth.TakeDamage(heavyAttackDamage);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy", "SummonType"));
 
-            SpawnAttackEffect(enemy);
+        foreach (Collider2D target in hitEnemies)
+        {
+            EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+            {
+                enemyHealth.TakeDamage(heavyAttackDamage);
+                SpawnAttackEffect(target);
+                continue;
+            }
+
+            SummonMonster summonMonster = target.GetComponent<SummonMonster>();
+            if (summonMonster)
+            {
+                summonMonster.TakeHit();
+                SpawnAttackEffect(target);
+                continue;
+            }
         }
     }
     public void PlayerSkill()
     {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy", "SummonType"));
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, LayerMask.GetMask("Enemy"));
-        foreach (Collider2D enemy in hitEnemies)
+        foreach (Collider2D target in hitEnemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (!enemyHealth) return;
-            enemyHealth.TakeDamage(skillDamage);
+            EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+            {
+                enemyHealth.TakeDamage(skillDamage);
+                SpawnAttackEffect(target);
+                continue;
+            }
 
-            SpawnAttackEffect(enemy);
+            SummonMonster summonMonster = target.GetComponent<SummonMonster>();
+            if (summonMonster)
+            {
+                summonMonster.TakeHit();
+                SpawnAttackEffect(target);
+                continue;
+            }
         }
     }
     public bool TrySpendStamina(float staminaCost)
@@ -124,12 +158,26 @@ public class PlayerCombat : MonoBehaviour
         nextStaminaRegenTime = Time.time + staminaRegenDelay;
         return true;
     }
+    public void RestoreStamina(float amount)
+    {
+        if (currentStamina >= maxStamina) return;
+
+        currentStamina += amount;
+        if (currentStamina > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+    }
     public bool SkillCooldownReset()
     {
-        if (skillCooldown > Time.time) return false;
+        if (Time.time < nextSkillTime) return false;
 
-        skillCooldown += Time.time;
+        nextSkillTime = Time.time + skillCooldown;
         return true;
+    }
+    public void ResetSkillAfterRest()
+    {
+        nextSkillTime = 0f;
     }
     public void SpawnAttackEffect(Collider2D enemy)
     {
@@ -153,6 +201,7 @@ public class PlayerCombat : MonoBehaviour
     {
         attackDamage += amount;
         heavyAttackDamage += amount;
+        skillDamage += amount;
     }
     private void OnDrawGizmosSelected()
     {

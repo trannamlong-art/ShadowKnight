@@ -16,6 +16,11 @@ public class EnemyStateIdle : EnemyState
     public override void Update()
     {
         // Code to execute during the idle state update
+        if (enemy.Data.enemyType == EnemyType.Undead && enemy.Summon.SummonCooldown())
+        {
+            enemy.ChangeState(new EnemyStateSummon(enemy));
+            return;
+        }
         if (enemy.Detection.PlayerCanBeTarget())
         {
             enemy.ChangeState(new EnemyStateRun(enemy));
@@ -27,6 +32,7 @@ public class EnemyStateIdle : EnemyState
             enemy.ChangeState(new EnemyStateAttack(enemy));
             return;
         }
+
     }
     public override void Exit()
     {
