@@ -12,6 +12,7 @@ public class PlayerStateJump : PlayerState
         hasLeftGround = false;
         player.Movement.PlayerJump(player.Movement.JumpForce);
         player.Animation.SetAnimationState("Jump");
+        player.Audio.PlayJumpSound();
     }
     public override void UpdateState()
     {

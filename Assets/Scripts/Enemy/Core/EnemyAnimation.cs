@@ -39,6 +39,7 @@ public class EnemyAnimation : MonoBehaviour
     public void TriggerDamageAttack()
     {
         enemyCombat.EnemyAttack();
+        enemy.Audio.PlayAttackSound();
     }
     public void TriggerBackDash()
     {

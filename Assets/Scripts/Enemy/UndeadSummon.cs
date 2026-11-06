@@ -59,4 +59,8 @@ public class UndeadSummon : MonoBehaviour
     {
         canSummon = true;
     }
+    public void CannotSummon()
+    {
+        canSummon = false;
+    }
 }

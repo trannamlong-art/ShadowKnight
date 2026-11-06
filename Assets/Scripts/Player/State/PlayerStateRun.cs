@@ -11,6 +11,7 @@ public class PlayerStateRun : PlayerState
     {
         // Code to execute when entering the run state
         player.Animation.SetAnimationState("Run");
+        player.Audio.PlayRunSound();
     }
     public override void UpdateState()
     {

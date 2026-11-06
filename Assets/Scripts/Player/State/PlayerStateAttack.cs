@@ -19,6 +19,7 @@ public class PlayerStateAttack : PlayerState
     }
     public override void UpdateState()
     {
+        player.Movement.PlayerStopMove();
         // Code to execute during the attack state update
         if (player.Input.attackInput && !nextAttacking)
         {

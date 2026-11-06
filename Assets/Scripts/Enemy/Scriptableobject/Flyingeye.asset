@@ -15,15 +15,17 @@ MonoBehaviour:
   enemyType: 3
   attackAnimations:
   - Attack
-  minGold: 30
-  maxGold: 40
+  attackSound: {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}
+  minGold: 40
+  maxGold: 50
   moveSpeed: 7
   maxHealth: 80
   attackDamage: 25
-  attackCooldown: 1.5
+  attackCooldown: 2
   shieldTime: 0
   shieldCooldown: 0
   shieldDamageReduction: 0
   DashForce: 20
   maxSummonCount: 0
   summonCooldown: 0
+  summonSound: {fileID: 0}

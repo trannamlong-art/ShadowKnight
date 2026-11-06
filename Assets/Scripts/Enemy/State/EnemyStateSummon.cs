@@ -11,10 +11,12 @@ public class EnemyStateSummon : EnemyState
     {
         enemy.Movement.EnemyStopMove();
         enemy.Animation.PlayAnimation("Summon");
+        enemy.Audio.PlaySummonSound();
     }
 
     public override void Update()
     {
+        enemy.Movement.EnemyStopMove();
         if (enemy.Animation.IsAnimationFinished("Summon"))
         {
             enemy.Summon.ActiveSummon();

@@ -11,6 +11,7 @@ public class PlayerStateLand : PlayerState
     {
         // Code to execute when entering the land state
         player.Animation.SetAnimationState("Land");
+        player.Audio.PlayLandSound();
     }
     public override void UpdateState()
     {
@@ -20,6 +21,11 @@ public class PlayerStateLand : PlayerState
         if (player.Animation.IsAnimationFinished())
         {
             player.ChangeState(new PlayerStateIdle(player));
+            return;
+        }
+        if (player.Input.jumpInput && player.Movement.IsGrounded)
+        {
+            player.ChangeState(new PlayerStateJump(player));
             return;
         }
     }

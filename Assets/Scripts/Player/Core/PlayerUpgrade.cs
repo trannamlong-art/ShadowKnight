@@ -37,7 +37,7 @@ public class PlayerUpgrade : MonoBehaviour
         if (healthLevel >= 5) return false;
         if (HealthUpgradeCost > playerController.Inventory.GoldAmount) return false;
 
-        playerController.Inventory.TrySpendGold(healthUpgradeCost);
+        playerController.Inventory.TrySpendGold(HealthUpgradeCost);
         playerController.Health.IncreaseMaxHealth(healthUpgradeAmount);
         healthLevel++;
         return true;
@@ -48,7 +48,7 @@ public class PlayerUpgrade : MonoBehaviour
         if (staminaLevel >= 5) return false;
         if (StaminaUpgradeCost > playerController.Inventory.GoldAmount) return false;
 
-        playerController.Inventory.TrySpendGold(staminaUpgradeCost);
+        playerController.Inventory.TrySpendGold(StaminaUpgradeCost);
         playerController.Combat.IncreaseMaxStamina(staminaUpgradeAmount, staminaRegenRateIncrease);
         staminaLevel++;
         return true;
@@ -59,7 +59,7 @@ public class PlayerUpgrade : MonoBehaviour
         if (damageLevel >= 5) return false;
         if (DamageUpgradeCost > playerController.Inventory.GoldAmount) return false;
 
-        playerController.Inventory.TrySpendGold(damageUpgradeCost);
+        playerController.Inventory.TrySpendGold(DamageUpgradeCost);
         playerController.Combat.IncreaseAttackDamage(attackDamageUpgradeAmount);
         damageLevel++;
         return true;

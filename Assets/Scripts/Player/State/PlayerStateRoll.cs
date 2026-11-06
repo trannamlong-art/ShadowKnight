@@ -13,6 +13,7 @@ public class PlayerStateRoll : PlayerState
         player.Animation.SetAnimationState("Roll");
         rollDirection = player.Movement.facingDirection;
         player.Movement.PlayerRoll(player.Movement.RollForce * rollDirection);
+        player.Audio.PlayRollSound();
     }
     public override void UpdateState()
     {
@@ -38,5 +39,7 @@ public class PlayerStateRoll : PlayerState
     public override void ExitState()
     {
         // Code to execute when exiting the roll state
+        player.Input.DisableButton(false);
+        player.Combat.DisableEnemyCollisions(false);
     }
 }

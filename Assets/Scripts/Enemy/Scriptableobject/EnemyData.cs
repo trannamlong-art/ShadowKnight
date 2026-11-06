@@ -15,6 +15,8 @@ public class EnemyData : ScriptableObject
 {
     public EnemyType enemyType;
     public string[] attackAnimations;
+    public AudioClip attackSound;
+
     public int minGold;
     public int maxGold;
 
@@ -35,6 +37,7 @@ public class EnemyData : ScriptableObject
     [Header("Undead Summon skill")]
     public int maxSummonCount;
     public float summonCooldown;
+    public AudioClip summonSound;
 
 
 }

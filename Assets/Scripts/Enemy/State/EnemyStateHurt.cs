@@ -10,6 +10,7 @@ public class EnemyStateHurt : EnemyState
     public override void Enter()
     {
         enemy.Animation.PlayAnimation("Hurt");
+        enemy.Audio.PlayHurtSound();
     }
     public override void Update()
     {

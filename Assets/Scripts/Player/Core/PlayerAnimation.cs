@@ -55,6 +55,7 @@ public class PlayerAnimation : MonoBehaviour
     public void TriggerDamage()
     {
         playerController.Combat.PlayerAttack();
+        playerController.Audio.PlayAttackSound();
     }
     public void TriggerHeavyAttack()
     {
@@ -63,10 +64,16 @@ public class PlayerAnimation : MonoBehaviour
     public void TriggerHeavyDamage()
     {
         playerController.Combat.PlayerHeavyAttack();
+        playerController.Audio.PlayAttackSound();
     }
     public void TriggerSkillDamage()
     {
         playerController.Combat.PlayerSkill();
+        playerController.Audio.PlaySkillSound();
+    }
+    public void TriggerAttackSound()
+    {
+        playerController.Audio.PlayAttackSound();
     }
     public bool IsHurtFinished()
     {

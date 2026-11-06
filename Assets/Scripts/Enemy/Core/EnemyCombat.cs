@@ -25,6 +25,7 @@ public class EnemyCombat : MonoBehaviour
             Transform transform = GetComponent<Transform>();
             if (playerHealth != null)
             {
+                if (playerHealth.CurrentHealth <= 0f) return;
                 playerHealth.TakeDamage(enemyData.attackDamage, transform);
             }
         }

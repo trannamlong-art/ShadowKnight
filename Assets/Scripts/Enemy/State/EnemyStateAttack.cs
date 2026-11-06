@@ -20,6 +20,10 @@ public class EnemyStateAttack : EnemyState
     {
         enemy.Combat.NextAttack();
         enemy.Combat.StartAttackCooldown();
+        if (enemy.Data.enemyType != EnemyType.Flyingeye)
+        {
+            enemy.Movement.EnemyStopMove();
+        }
 
         if (enemy.Animation.IsAnimationFinished(attackName) && enemy.Detection.PlayerInDetectionZone())
         {

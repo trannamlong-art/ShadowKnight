@@ -14,6 +14,7 @@ public class PlayerStateSkill : PlayerState
     }
     public override void UpdateState()
     {
+        player.Movement.PlayerStopMove();
         if (player.Animation.IsAnimationFinished())
         {
             player.ChangeState(new PlayerStateIdle(player));

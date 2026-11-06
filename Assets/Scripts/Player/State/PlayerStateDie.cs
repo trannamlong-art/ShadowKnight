@@ -12,6 +12,7 @@ public class PlayerStateDie : PlayerState
         player.Movement.PlayerStopMove();
         player.Input.DisableButton(true);
         player.Animation.SetAnimationState("Die");
+        player.Audio.PlayDeathSound();
     }
     public override void UpdateState()
     {

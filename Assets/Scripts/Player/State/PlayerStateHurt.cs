@@ -12,6 +12,7 @@ public class PlayerStateHurt : PlayerState
         // Code to execute when entering the hurt state
         player.Input.DisableButton(true);
         player.Animation.SetAnimationState("Hurt");
+        player.Audio.PlayHurtSound();
     }
     public override void UpdateState()
     {

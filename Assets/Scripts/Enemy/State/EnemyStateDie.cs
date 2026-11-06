@@ -13,6 +13,7 @@ public class EnemyStateDie : EnemyState
         enemy.Movement.EnemyStopMove();
         enemy.Animation.PlayAnimation("Die");
         enemy.gameObject.tag = "DeadEnemy";
+        enemy.Audio.PlayDeathSound();
 
         if (enemy.Summon != null)
         {
@@ -25,6 +26,10 @@ public class EnemyStateDie : EnemyState
         if (enemy.Animation.IsAnimationDieFinished())
         {
             enemy.gameObject.SetActive(false);
+            if (enemy.Data.enemyType == EnemyType.Undead)
+            {
+                enemy.GameManager.ShowWinPanel();
+            }
         }
     }
     public override void Exit()

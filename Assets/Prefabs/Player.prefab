@@ -16,9 +16,14 @@ GameObject:
   - component: {fileID: 2711622124529598553}
   - component: {fileID: 5166039069959422478}
   - component: {fileID: 7304812553430090538}
+  - component: {fileID: 6633879308177027112}
+  - component: {fileID: 22582030858758476}
+  - component: {fileID: 1826912526788770224}
+  - component: {fileID: 249089997221184995}
+  - component: {fileID: 3103559485156498179}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 10
-  jumpForce: 55
+  jumpForce: 75
   rollForce: 70
   knockbackForce: 20
   groundCheck: {fileID: 358639182077936555}
@@ -97,9 +102,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 5
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_AngularDamping: 1
+  m_GravityScale: 3.5
+  m_Material: {fileID: 6200000, guid: a4387238db9708b4881d44b3ab0153d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -170,8 +175,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   attackPoint: {fileID: 858235602681912822}
   attackRadius: 1.5
-  attackDamage: 40
+  attackDamage: 100
   heavyAttackDamage: 0
+  attackEffectPrefab: {fileID: 6177578262735579823, guid: 6e1b18dd7f20bb94ab6e632230642c71, type: 3}
+  skillDamage: 25
+  skillCooldown: 3
+  maxStamina: 100
+  staminaRegenRate: 20
+  staminaRegenDelay: 1
+  heavyAttackStaminaCost: 20
+  attackStaminaCost: 10
+  rollStaminaCost: 20
 --- !u!114 &7304812553430090538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +198,171 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd9479e3dd5aa74db7fc2c60514f68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHealth: 100
+  maxHealth: 10000
+--- !u!114 &6633879308177027112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319831164471552499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3350e0211cf90e04b856776cb646a18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  maxHealthPotions: 3
+  goldAmount: 0
+--- !u!114 &22582030858758476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319831164471552499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d021ca4a8f93ffd48b96f19fb2bf02dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgrade
+  healthUpgradeAmount: 20
+  staminaUpgradeAmount: 10
+  staminaRegenRateIncrease: 2
+  attackDamageUpgradeAmount: 5
+  damageUpgradeCost: 100
+  healthUpgradeCost: 100
+  staminaUpgradeCost: 100
+  upgradeCostIncrement: 50
+--- !u!114 &1826912526788770224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319831164471552499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d56ec9865ebdf4cb762af624e87b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
+  respawnPoint: {fileID: 0}
+--- !u!114 &249089997221184995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319831164471552499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3341baced15c7d44a5025f55d465dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
+  attackSound: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  jumpSound: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
+  landSound: {fileID: 8300000, guid: eaae8fe8d600e1f459f34aa5757fa3b8, type: 3}
+  rollSound: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
+  healSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  skillSound: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  hurtSound: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
+  deathSound: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
+--- !u!82 &3103559485156498179
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319831164471552499}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1106723665428717124
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +433,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 219940078043806775}
     m_Modifications:
+    - target: {fileID: 3344300793136285399, guid: 1f5941b3e48c19c4cb5a7a1e757a0904, type: 3}
+      propertyPath: m_SortingLayer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344300793136285399, guid: 1f5941b3e48c19c4cb5a7a1e757a0904, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1186830869
+      objectReference: {fileID: 0}
     - target: {fileID: 7136130111797264174, guid: 1f5941b3e48c19c4cb5a7a1e757a0904, type: 3}
       propertyPath: m_LocalScale.x
       value: 7

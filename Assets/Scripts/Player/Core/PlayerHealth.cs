@@ -43,6 +43,10 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
+    public void RestoreFullHealth()
+    {
+        currentHealth = maxHealth;
+    }
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;

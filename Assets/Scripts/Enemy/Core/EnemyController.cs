@@ -9,9 +9,12 @@ public class EnemyController : MonoBehaviour
     public EnemyMovement Movement { get; private set; }
     public EnemyCombat Combat { get; private set; }
     public EnemyHealth Health { get; private set; }
+    public EnemySound Audio { get; private set; }
 
     public SkeletonShield Shield { get; private set; }
     public UndeadSummon Summon { get; private set; }
+
+    public UIManager GameManager { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -20,9 +23,11 @@ public class EnemyController : MonoBehaviour
         Movement = GetComponent<EnemyMovement>();
         Combat = GetComponent<EnemyCombat>();
         Health = GetComponent<EnemyHealth>();
+        Audio = GetComponent<EnemySound>();
 
         Shield = GetComponent<SkeletonShield>();
         Summon = GetComponent<UndeadSummon>();
+        GameManager = FindAnyObjectByType<UIManager>();
     }
     void Start()
     {
@@ -59,6 +64,12 @@ public class EnemyController : MonoBehaviour
 
         Health.RestoreFullHealth();
         gameObject.tag = "Enemy";
+
+        if (Summon != null)
+        {
+            Summon.DisableSummon();
+            Summon.CannotSummon();
+        }
 
         // Reset the enemy's state to idle
         gameObject.SetActive(true);

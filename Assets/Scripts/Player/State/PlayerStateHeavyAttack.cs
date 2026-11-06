@@ -18,6 +18,7 @@ public class PlayerStateHeavyAttack : PlayerState
     }
     public override void UpdateState()
     {
+        player.Movement.PlayerStopMove();
         // Code to execute during the heavy attack state update
         if (player.Input.heavyAttackInput && !nextHeavyAttacking)
         {

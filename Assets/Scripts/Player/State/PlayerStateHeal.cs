@@ -12,6 +12,7 @@ public class PlayerStateHeal : PlayerState
         // Code to execute when entering the state
         player.Animation.SetAnimationState("Heal");
         player.Input.DisableButton(true);
+        player.Audio.PlayHealSound();
     }
     public override void UpdateState()
     {
